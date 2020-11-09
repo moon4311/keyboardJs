@@ -4,14 +4,15 @@
   "version": "1.0",
   "default_locale": "ko",
   "description": "Virtual Keyboard",
-  "icons": {"16": "img/16.png",
-		  	"128":"img/128.png"
+  "icons": {"16": "img/icons.png",
+		  	"48": "img/icons.png",
+		  	"128":"img/icons.png"
 		  },
 
   "devtools_page": "keyboard.html",
   "browser_action": {
   	"default_popup" : "keyboard.html",
-  	"default_icon" : "img/128.png"
+  	"default_icon" : "img/icons.png"
   },
 
   "author": "KimJaeMoon",
