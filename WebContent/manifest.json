@@ -1,0 +1,19 @@
+{
+  "name": "Virtual Keyboard",
+  "manifest_version": 2,
+  "version": "1.0",
+  "default_locale": "ko",
+  "description": "Virtual Keyboard",
+  "icons": {"16": "img/icons.png",
+		  	"48": "img/icons.png",
+		  	"128":"img/icons.png"
+		  },
+
+  "browser_action": {
+  	"default_popup" : "keyboard.html",
+  	"default_icon" : "img/icons.png"
+  },
+
+  "author": "KimJaeMoon",
+  "version_name": "1.0.0"
+}
