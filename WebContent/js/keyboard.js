@@ -1,4 +1,8 @@
 /**
+ * TODO
+ * 1. 연속 모음 입력처리
+ * 2. 받침 입력 처리
+ * 3. 기능키 처리 (shift, backspace, enter)
  * 
  */
 
@@ -6,7 +10,7 @@ var on = "on";
 
 var startKeyList = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
 var middleKeyList = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
-var endKeyList = "ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
+var endKeyList = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
 
 var sChar = "가".charCodeAt(0).toString(16); //ac00
 var eChar = "힣".charCodeAt(0).toString(16); //d7ac
@@ -60,33 +64,31 @@ $(document).ready(function(){
 			return;
 	
 		}else{		//한글일떄
-			console.log(cVal);
-			//초성  (x - 44032)/ (21 * 28)
-			var c1 = (cVal - 44032)/(21 * 28);
-			//중성  (x - 44032 - (초성 * 21 * 28))/28
-			var c2 = (cVal - 44032-(c1 * 21 * 28))/28;
-			//종성  (x - 44032 - (초성 * 21 * 28) - (중성 * 28 ))
-			var c3 = (cVal - 44032-(c1 * 21 * 28)-(c2 * 28));
-			
-			console.log(c1);
-			console.log(c2);
-			console.log(c3);
-		
-			
-			//1.자음만 있는 상태
-			var sKey = startKeyList.indexOf(val);
-//			if( "ㄱ" <= hVal && hval <= "ㅎ"  ){
-			if( startKeyList.indexOf(val) >-1){
-				
-			}
-			
-			//자음 모음 구분
-			if(idx2>-1){
-				var rslt = ((idx1*21)+idx2)*28+0+0xAC00;
-				rslt = String.fromCharCode(rslt);
-				trgt.val(rslt);
-			}else{
-				trgt.val(trgt.val()+s);
+			var t3 = (cVal - 44032) %28; //종성
+			var t2 = (cVal - 44032 -t3)/28 % 21; //중성
+			var t1 = (((cVal-44032 -t3)/28)-t2) / 21; //초성
+			console.log(t3);
+			console.log(t2);
+			console.log(t1);
+			console.log(startKeyList[t1]);
+			console.log(middleKeyList[t2]);
+			console.log(endKeyList[t3]);
+			//받침 넣기
+			if(t3==0 && endKeyList.indexOf(char)>-1){
+				t3 = endKeyList.indexOf(char);
+				cVal += t3;
+				var rslt = String.fromCharCode(cVal);
+				fnModHanGul(rslt);
+			//다음 글자 입력
+			}else if(startKeyList.indexOf(char)>-1){
+				trgt.val(trgt.val()+char);
+			//받침 뺴서 자음으로 넣기
+			}else if(middleKeyList.indexOf(char)>-1){
+				cVal -= t3;
+				var rslt = String.fromCharCode(cVal);
+				var startKey = endKeyList[t3];
+				rslt += toHanGul(startKeyList.indexOf(startKey),middleKeyList.indexOf(char));
+				fnModHanGul(rslt);
 			}
 			
 		}
@@ -104,6 +106,12 @@ $(document).ready(function(){
 		return false;
 	});
 });
+
+function fnModHanGul(rslt){
+	var str = trgt.val();
+	var len = str.length;
+	trgt.val( str.substr(0,len-1)+rslt);
+}
 
 function fnkey(key){
 	switch (key) {
