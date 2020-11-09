@@ -1,9 +1,9 @@
 /**
- * TODO
- * 1. 연속 모음 입력처리
- * 2. 받침 입력 처리
- * 3. 기능키 처리 (shift, backspace, enter)
- * 
+ *  앞자 받침이 ㄱ,ㄴ,ㄹ,ㅂ 일 때 1,4,8,17
+ *  ㄱ - ㅅ
+ *  ㄴ - ㅈㅎ
+ *  ㄹ - ㄱㅁㅂㅅㅍㅎ
+ *  ㅂ - ㅅ
  */
 
 var on = "on";
@@ -75,8 +75,34 @@ $(document).ready(function(){
 			if(t3==0 && endKeyList.indexOf(char)>-1){
 				t3 = endKeyList.indexOf(char);
 				cVal += t3;
-				var rslt = String.fromCharCode(cVal);
-				fnModHanGul(rslt);
+				fnModHanGul(String.fromCharCode(cVal));
+			//복합받침
+			}else if(t3==1||t3==4||t3==8||t3==17){
+				
+				switch (t3) {
+				case 1: //ㄱ
+					if(char=='ㅅ') cVal += 1;
+					break;
+				case 4://ㄴ
+					if(char=='ㅈ') cVal += 1;
+					if(char=='ㅎ') cVal += 2;
+					break;
+				case 8: //ㄹ
+					if(char=='ㄱ') cVal += 1;
+					if(char=='ㅁ') cVal += 2;
+					if(char=='ㅂ') cVal += 3;
+					if(char=='ㅅ') cVal += 4;
+					if(char=='ㅌ') cVal += 5;
+					if(char=='ㅍ') cVal += 6;
+					if(char=='ㅎ') cVal += 7;
+					break;
+				case 17:
+					if(char=='ㅅ') cVal += 1;
+					break;
+				default:
+					break;
+				}
+				fnModHanGul(String.fromCharCode(cVal));
 			//다음 글자 입력
 			}else if(startKeyList.indexOf(char)>-1){
 				trgt.val(trgt.val()+char);
@@ -132,12 +158,19 @@ function fnkey(key){
 	case "enter":
 		console.log("enter");
 		break;
-
+	case "space":
+		trgt.val(trgt.val()+" ");
+		break;
+	case "open":
+		$(".wrap").show();
+		break;
+	case "close":
+		$(".wrap").hide();
+		break;
 	default:
 		break;
 	}
 }
-
 
 function toHanGul(idx1,idx2,idx3){
 	idx1 = idx1 || 0;
