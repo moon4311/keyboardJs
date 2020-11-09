@@ -17,7 +17,7 @@ var eChar = "힣".charCodeAt(0).toString(16); //d7ac
 
 var trgt;
 $(document).ready(function(){
-	
+	$(".case2").hide();
 	$("input[type=text]").on("focus",function(){
 		trgt = $(this);
 	});
@@ -30,8 +30,6 @@ $(document).ready(function(){
 	
 	$(".key").on("mousedown",function(e){
 		e.defaultPrevent;
-		
-		
 		//마지막 글자
 		var val = trgt.val().substr(-1);
 		var cVal = val.charCodeAt(0);
@@ -44,6 +42,7 @@ $(document).ready(function(){
 			fnkey($(this).attr("id"));
 			return;
 		}
+		
 		$(this).addClass(on);
 		
 		//공백일 때, 추가할 문자가 한글이 아닐 떄
@@ -51,12 +50,16 @@ $(document).ready(function(){
 			trgt.val(trgt.val()+char);
 		//자음만 있을 때
 		}else if(startKeyList.indexOf(val)>-1){
-			var rslt= toHanGul(
-					startKeyList.indexOf(val),
-					middleKeyList.indexOf(char)
-					);
-			var valLen = trgt.val().length;
-			trgt.val(trgt.val().substr(0,valLen-1)+rslt);
+			if(startKeyList.indexOf(char)>-1){
+				trgt.val(trgt.val()+char);
+			}else{
+				var rslt= toHanGul(
+						startKeyList.indexOf(val),
+						middleKeyList.indexOf(char)
+						);
+				var valLen = trgt.val().length;
+				trgt.val(trgt.val().substr(0,valLen-1)+rslt);
+			}
 
 		//한글이 아닐 떄
 		}else if(44032 > cVal || 55199 < cVal){
@@ -67,12 +70,7 @@ $(document).ready(function(){
 			var t3 = (cVal - 44032) %28; //종성
 			var t2 = (cVal - 44032 -t3)/28 % 21; //중성
 			var t1 = (((cVal-44032 -t3)/28)-t2) / 21; //초성
-			console.log(t3);
-			console.log(t2);
-			console.log(t1);
-			console.log(startKeyList[t1]);
-			console.log(middleKeyList[t2]);
-			console.log(endKeyList[t3]);
+			
 			//받침 넣기
 			if(t3==0 && endKeyList.indexOf(char)>-1){
 				t3 = endKeyList.indexOf(char);
@@ -117,12 +115,19 @@ function fnkey(key){
 	switch (key) {
 	case "shift":
 		if($("#shift").hasClass("on")){
+			$("#shift").removeClass("on");
+			$(".case2").hide();
+			$(".case1").show();
+		}else{
+			$("#shift").addClass("on");
+			$(".case1").hide();
+			$(".case2").show();
 		}
-		
-		console.log("shift");
 		break;
 	case "backspace":
-		console.log("backspace");
+		var s = trgt.val();
+		trgt.val(s.substr(0,s.length-1));
+		trgt.focus();
 		break;
 	case "enter":
 		console.log("enter");

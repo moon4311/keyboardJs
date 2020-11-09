@@ -28,7 +28,7 @@
 		<div class="key">9</div>
 		<div class="key">0</div>
 	</div>
-	<div class="row">
+	<div class="row case1">
 		<div class="key">ㅂ</div>
 		<div class="key">ㅈ</div>
 		<div class="key">ㄷ</div>
@@ -36,9 +36,22 @@
 		<div class="key">ㅅ</div>
 		<div class="key">ㅛ</div>
 		<div class="key">ㅕ</div>
-		<div class="key">ㅕ</div>
+		<div class="key">ㅑ</div>
 		<div class="key">ㅐ</div>
 		<div class="key">ㅔ</div>
+		<div class="key fkey" id="backspace">Backspace</div>
+	</div>
+	<div class="row case2">
+		<div class="key">ㅃ</div>
+		<div class="key">ㅉ</div>
+		<div class="key">ㄸ</div>
+		<div class="key">ㄲ</div>
+		<div class="key">ㅆ</div>
+		<div class="key">ㅛ</div>
+		<div class="key">ㅕ</div>
+		<div class="key">ㅑ</div>
+		<div class="key">ㅒ</div>
+		<div class="key">ㅖ</div>
 		<div class="key fkey" id="backspace">Backspace</div>
 	</div>
 	<div class="row">
@@ -73,20 +86,21 @@
 
 <div class="todo">TODO LIST</div>
 <ul>
-	<li>기능키 처리 (shift, backspace, enter)</li>
+	<li>shift 기능키 처리 - 고정, 해제 구분기준 </li>
+	<li>backspace 기능키 처리  - 종성,중성,초성 순 삭제</li>
+	<li>enter 기능키 처리</li>
 	<li>연속 모음 입력처리</li>
 	<li>혼합받침 입력처리</li>
-	<li></li>
-	<li></li>
+	<li>띄어쓰기</li>
 </ul>
 
 <div class="finish"> finish</div>
 <ul>
 	<li>기본 받침 입력 처리</li>
-	<li>여러글자 입력처리</li>
-	<li></li>
-	<li></li>
-	<li></li>
+	<li>여러글자 입력 처리</li>
+	<li>자음 연속입력 처리</li>
+	<li>Shift 쌍자음 변환 처리</li>
+	<li>backspace 한자씩 지움 처리</li>
 </ul>
 
 </body>
