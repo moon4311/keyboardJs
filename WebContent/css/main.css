@@ -1,72 +1,70 @@
 @charset "UTF-8";
-
-div.test .key{
-	display: inline-block;
-}
-div.wrap{
-	width: 700px; 
+div.test .key {
+    display: inline-block;
 }
 
-div.row{
-	display: flex; 
+div.keyboard_jm {
+    position: fixed; bottom: 0; z-index: 1000;
+    padding: 0; margin: 0;
+    width: 100%;
+    background-color: #fff;
 }
 
-div.row{
-	margin-left : 20px;
+div.wrap {
+    width: 100%;
 }
 
-div.key{
-	flex: 1 1 auto;
-	padding : 10px;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #fff;
-	box-shadow: 0 3px 0 2px #aaa;
-	border-radius: 5px;
-	margin : 3px;
-	background: linear-gradient(to bottom, #ccc, #eee);
-	text-shadow: 1px 1px 0 #eee;
-	font-weight: 700;
-	text-align: center;
-	cursor: pointer;
-	user-select: none;
+div.row {
+    display: flex;
 }
+
+div.key {
+    flex: 1 1 auto;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 3px 0 2px #aaa;
+    border-radius: 5px;
+    margin: 3px;
+    background: linear-gradient(to bottom, #ccc, #eee);
+    text-shadow: 1px 1px 0 #eee;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
 div.key:active {
-	position: relative;
-	top: 2px;
-	box-shadow: 0 1px 0 2px #888;
-	background: linear-gradient(to bottom, #aaa, #ccc);
-	border-top: 1px solid #bbb;
-	border-bottom: 1px solid #ccc;
+    position: relative;
+    top: 2px;
+    box-shadow: 0 1px 0 2px #888;
+    background: linear-gradient(to bottom, #aaa, #ccc);
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #ccc;
 }
 
-div.backspace{
-	
+div.backspace {}
+
+div.enter {}
+
+div.shift {}
+
+div.on {
+    /* background: #000;
+   color: #fff; */
+    position: relative;
+    top: 2px;
+    box-shadow: 0 1px 0 2px #888;
+    background: linear-gradient(to bottom, #aaa, #ccc);
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #ccc;
 }
 
-div.enter{
-	
+div#space {
+    width: 40%;
 }
 
-div.shift{
-	
-}
-
-div.on{
-	/* background: #000;
-	color: #fff; */
-	position: relative;
-	top: 2px;
-	box-shadow: 0 1px 0 2px #888;
-	background: linear-gradient(to bottom, #aaa, #ccc);
-	border-top: 1px solid #bbb;
-	border-bottom: 1px solid #ccc;
-}
-
-div#space{
-	width:40%;
-}
-
-div.num{
-	min-width:30px;
-	text-align:center;
+div.num {
+    min-width: 30px;
+    text-align: center;
 }

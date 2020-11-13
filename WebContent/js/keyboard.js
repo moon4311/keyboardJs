@@ -6,6 +6,8 @@
  *  ㅂ - ㅅ
  */
 
+
+
 var on = "on";
 
 var startKeyList = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";

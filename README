@@ -1,1 +1,12 @@
+
+test 환경
 WebContent/keyboard.html 실행
+
+크롬 확장프로그램 등록 방법
+
+1. chrome://extensions/
+
+2. 우측 상단 개발자모드 on
+
+3. 압축해제된 확장프로그램 로드
+ keyboardJs/WebContent/
