@@ -1,79 +1,42 @@
 
+function fnMakeRow(arr,rowClss){
+	tag='<div class="row '+ rowClss +'">';
+	arr.forEach(function(a,b){
+		var keyclss="";
+		if(a.length>1){
+			keyclss = 'fkey';
+		}
+		if(typeof(a)=="number"){
+			keyclss= 'num';
+		}
+		tag += '<div id="'+a+'" class="key '+ keyclss +'">'+a+'</div>';
+	});
+	tag+='</div>';
+	return tag;
+}
+
+
 var body = document.getElementsByTagName("body")[0];
 
-var keyboardTag='<div class="wrap">'
-	+'<div class="row">'
-		+'<div class="key num">1</div>'
-		+'<div class="key num">2</div>'
-		+'<div class="key num">3</div>'
-		+'<div class="key num">4</div>'
-		+'<div class="key num">5</div>'
-		+'<div class="key num">6</div>'
-		+'<div class="key num">7</div>'
-		+'<div class="key num">8</div>'
-		+'<div class="key num">9</div>'
-		+'<div class="key num">0</div>'
-	+'</div>'
-	+'<div class="row case1"> '
-		+'<div class="key">ㅂ</div>'
-		+'<div class="key">ㅈ</div>'
-		+'<div class="key">ㄷ</div>'
-		+'<div class="key">ㄱ</div>'
-		+'<div class="key">ㅅ</div>'
-		+'<div class="key">ㅛ</div>'
-		+'<div class="key">ㅕ</div>'
-		+'<div class="key">ㅑ</div>'
-		+'<div class="key">ㅐ</div>'
-		+'<div class="key">ㅔ</div>'
-		+'<div class="key fkey" id="backspace">Backspace</div>'
-	+'</div>'
-	+'<div class="row case2"> '
-		+'<div class="key">ㅃ</div>'
-		+'<div class="key">ㅉ</div>'
-		+'<div class="key">ㄸ</div>'
-		+'<div class="key">ㄲ</div>'
-		+'<div class="key">ㅆ</div>'
-		+'<div class="key">ㅛ</div>'
-		+'<div class="key">ㅕ</div>'
-		+'<div class="key">ㅑ</div>'
-		+'<div class="key">ㅒ</div>'
-		+'<div class="key">ㅖ</div>'
-		+'<div class="key fkey" id="backspace">Backspace</div>'
-	+'</div>'
-	+'<div class="row"> '
-		+'<div class="key">ㅁ</div>'
-		+'<div class="key">ㄴ</div>'
-		+'<div class="key">ㅇ</div>'
-		+'<div class="key">ㄹ</div>'
-		+'<div class="key">ㅎ</div>'
-		+'<div class="key">ㅗ</div>'
-		+'<div class="key">ㅓ</div>'
-		+'<div class="key">ㅏ</div>'
-		+'<div class="key">ㅣ</div>'
-		+'<div class="key fkey" id="enter">Enter</div>'
-	+'</div>'
-	+'<div class="row"> '
-		+'<div class="key fkey" id="shift">Shift</div>'
-		+'<div class="key">ㅋ</div>'
-		+'<div class="key">ㅌ</div>'
-		+'<div class="key">ㅊ</div>'
-		+'<div class="key">ㅍ</div>'
-		+'<div class="key">ㅠ</div>'
-		+'<div class="key">ㅜ</div>'
-		+'<div class="key">ㅡ</div>'
-		+'<div class="key">,</div>'
-		+'<div class="key">.</div>'
-		+'<div class="key">/</div>'
-		+'</div>'
-		+'<div class="row"> '
-		+'<div class="key fkey" id="space">&nbsp;&nbsp;&nbsp;</div>'
-		+'<div class="key fkey" id="close">X</div>'
-		+'</div>'
-	+'</div>';
+var row1 = [1,2,3,4,5,6,7,8,9,0];
+var row2 = ["ㅂ","ㅈ","ㄷ","ㄱ","ㅅ","ㅛ","ㅕ","ㅑ","ㅐ","ㅔ","backspace"];
+var row3 = ["ㅃ","ㅉ","ㄸ","ㄲ","ㅆ","ㅛ","ㅕ","ㅑ","ㅒ","ㅖ","backspace"];
+var row4 = ["ㅁ","ㄴ","ㅇ","ㄹ","ㅎ","ㅗ","ㅓ","ㅏ","ㅣ","enter"];
+var row5 = ["ㅋ","ㅌ","ㅊ","ㅍ","ㅠ","ㅜ","ㅡ",",",".","/"];
+var row6 = [" ","close"];
+
+var keyboard='<div class="wrap" style="display:none;">'
+	+ fnMakeRow(row1)
+	+ fnMakeRow(row2,"case1")
+	+ fnMakeRow(row3,"case2")
+	+ fnMakeRow(row4)
+	+ fnMakeRow(row5)
+	+ fnMakeRow(row6)
+	+ '</div>';
 
 var el = document.createElement("div");
 el.className="keyboard_jm";
-el.innerHTML=keyboardTag;
+el.innerHTML=keyboard;
 body.append(el);
 
 /**
@@ -90,22 +53,17 @@ var startKeyList = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
 var middleKeyList = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
 var endKeyList = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
 
-var sChar = "가".charCodeAt(0).toString(16); //ac00
-var eChar = "힣".charCodeAt(0).toString(16); //d7ac
+var sChar = "가".charCodeAt(0); //44032
+var eChar = "힣".charCodeAt(0); //55203
 
 var trgt;
 $(document).ready(function(){
 	$(".case2").hide();
-	$("input[type=text]").on("focus",function(){
+	$("input[type=text],input[type=search]").on("focus",function(){
+		$(".wrap").show();
 		trgt = $(this);
 	});
-	$("#test").focus();
 
-	//unicode를 문자로 변환하는 방법
-	//String.fromCharCode(parseInt("문",16));
-	//((초성 * 21) + 중성) * 28 + 종성 + 0xAC00
-	
-	
 	$(".key").on("mousedown",function(e){
 		e.defaultPrevent;
 		//마지막 글자
@@ -140,7 +98,7 @@ $(document).ready(function(){
 			}
 
 		//한글이 아닐 떄
-		}else if(44032 > cVal || 55199 < cVal){
+		}else if(sChar > cVal || eChar < cVal){
 			fnAddChar(char);
 			return;
 	
