@@ -1,4 +1,21 @@
 
+var body = document.getElementsByTagName("body")[0];
+/* keyboard key */
+var row1 = [1,2,3,4,5,6,7,8,9,0];
+var row2 = ["ㅂ","ㅈ","ㄷ","ㄱ","ㅅ","ㅛ","ㅕ","ㅑ","ㅐ","ㅔ","backspace"];
+var row3 = ["ㅃ","ㅉ","ㄸ","ㄲ","ㅆ","ㅛ","ㅕ","ㅑ","ㅒ","ㅖ","backspace"];
+var row4 = ["ㅁ","ㄴ","ㅇ","ㄹ","ㅎ","ㅗ","ㅓ","ㅏ","ㅣ","enter"];
+var row5 = ["ㅋ","ㅌ","ㅊ","ㅍ","ㅠ","ㅜ","ㅡ",",",".","/"];
+var row6 = [" ","close"];
+
+var startKeyList = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
+var middleKeyList = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
+var endKeyList = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
+var sChar = "가".charCodeAt(0); //44032
+var eChar = "힣".charCodeAt(0); //55203
+var trgt;
+var closeKeyboard = sessionStorage['closeKeyboard'];
+
 function fnMakeRow(arr,rowClss){
 	tag='<div class="row '+ rowClss +'">';
 	arr.forEach(function(a,b){
@@ -14,16 +31,6 @@ function fnMakeRow(arr,rowClss){
 	tag+='</div>';
 	return tag;
 }
-
-
-var body = document.getElementsByTagName("body")[0];
-
-var row1 = [1,2,3,4,5,6,7,8,9,0];
-var row2 = ["ㅂ","ㅈ","ㄷ","ㄱ","ㅅ","ㅛ","ㅕ","ㅑ","ㅐ","ㅔ","backspace"];
-var row3 = ["ㅃ","ㅉ","ㄸ","ㄲ","ㅆ","ㅛ","ㅕ","ㅑ","ㅒ","ㅖ","backspace"];
-var row4 = ["ㅁ","ㄴ","ㅇ","ㄹ","ㅎ","ㅗ","ㅓ","ㅏ","ㅣ","enter"];
-var row5 = ["ㅋ","ㅌ","ㅊ","ㅍ","ㅠ","ㅜ","ㅡ",",",".","/"];
-var row6 = [" ","close"];
 
 var keyboard='<div class="wrap" style="display:none;">'
 	+ fnMakeRow(row1)
@@ -49,18 +56,13 @@ body.append(el);
 
 var on = "on";
 
-var startKeyList = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
-var middleKeyList = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
-var endKeyList = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
-
-var sChar = "가".charCodeAt(0); //44032
-var eChar = "힣".charCodeAt(0); //55203
-
-var trgt;
 $(document).ready(function(){
 	$(".case2").hide();
 	$("input[type=text],input[type=search]").on("focus",function(){
-		$(".wrap").show();
+		console.log(closeKeyboard);
+		if(!closeKeyboard){
+			$(".wrap").show();
+		}
 		trgt = $(this);
 	});
 
@@ -93,7 +95,6 @@ $(document).ready(function(){
 						startKeyList.indexOf(val),
 						middleKeyList.indexOf(char)
 						);
-				
 				fnModHanGul(rslt);
 			}
 
@@ -103,7 +104,7 @@ $(document).ready(function(){
 			return;
 	
 		}else{		//한글일떄
-			var cVal2 = cVal - 44032;
+			var cVal2 = cVal - sChar;
 			var t3 = (cVal2) %28; //종성
 			var t2 = (cVal2 - t3)/28 % 21; //중성
 			var t1 = (((cVal2 - t3)/28)-t2) / 21; //초성
@@ -129,7 +130,8 @@ $(document).ready(function(){
 					if(char=='ㅣ') cVal += 1*28;
 					break;
 				default:
-					break;
+					fnAddChar(char);
+					return;
 				}
 				fnModHanGul(String.fromCharCode(cVal));
 				return;
@@ -272,6 +274,7 @@ function fnkey(key){
 		$(".wrap").show();
 		break;
 	case "close":
+		closeKeyboard = true;
 		$(".wrap").hide();
 		break;
 	default:

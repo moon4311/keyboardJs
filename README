@@ -10,3 +10,8 @@ WebContent/keyboard.html 실행
 
 3. 압축해제된 확장프로그램 로드
  keyboardJs/WebContent/
+ 
+ 
+ TODO List
+ 1.background.js 구현 
+ 2.setting.js 구현
