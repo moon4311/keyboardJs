@@ -12,7 +12,7 @@
   "devtools_page": "setting.html",
   
   "background" : {
-    "scripts" : ["js/backgruond.js"],
+    "scripts" : ["js/background.js"],
     "persistent" : false
   },
   "browser_action": {
