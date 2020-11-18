@@ -59,7 +59,7 @@ var on = "on";
 $(document).ready(function(){
 	$(".case2").hide();
 	$("input[type=text],input[type=search]").on("focus",function(){
-		console.log(closeKeyboard);
+		//console.log(closeKeyboard);
 		if(!closeKeyboard){
 			$(".wrap").show();
 		}
@@ -115,23 +115,25 @@ $(document).ready(function(){
 					fnAddChar(char);
 					return;
 				}
-				switch (t2) {
+				switch (t2){
 				case 8: //ㅗ
 					if(char=='ㅏ') cVal += 1*28;
-					if(char=='ㅐ') cVal += 2*28;
-					if(char=='ㅣ') cVal += 3*28;
+					else if(char=='ㅐ') cVal += 2*28;
+					else if(char=='ㅣ') cVal += 3*28;
+					else return fnAddChar(char);
 					break;
 				case 13: //ㅜ
 					if(char=='ㅓ') cVal += 1*28;
-					if(char=='ㅔ') cVal += 2*28;
-					if(char=='ㅣ') cVal += 3*28;
+					else if(char=='ㅔ') cVal += 2*28;
+					else if(char=='ㅣ') cVal += 3*28;
+					else return fnAddChar(char);
 					break;
 				case 18: //ㅡ
 					if(char=='ㅣ') cVal += 1*28;
+					else return fnAddChar(char);
 					break;
 				default:
-					fnAddChar(char);
-					return;
+					return fnAddChar(char);
 				}
 				fnModHanGul(String.fromCharCode(cVal));
 				return;

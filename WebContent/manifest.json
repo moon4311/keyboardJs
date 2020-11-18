@@ -1,5 +1,5 @@
 {
-  "name": "Virtual Keyboard 재문",
+  "name": "Virtual Keyboard",
   "manifest_version": 2,
   "version": "1.0",
   "author": "KimJaeMoon",
@@ -12,21 +12,20 @@
   "devtools_page": "setting.html",
   
   "background" : {
-    "scripts" : ["js/backgruond.js"],
+    "scripts" : ["js/background.js"],
     "persistent" : false
   },
-  "browser_action": {
-	"default_popup" : "setting.html",
-  	"default_icon" : "img/128.png"
-  },
-
   "content_scripts": [
   	{"matches" : ["<all_urls>"],
   	"css":["css/main.css"],
   	"js":["js/jquery-3.5.1.slim.js","js/content.js"]
   	}
   ],
-  
+  "page_action":{
+  	"default_title" : "virtual keyboard setting",
+  	"default_icon" : "img/128.png",
+  	"default_popup" : "setting.html"
+  },
   "permissions": [
   	"activeTab"
   ],
