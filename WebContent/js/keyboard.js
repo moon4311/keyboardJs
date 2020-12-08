@@ -30,7 +30,8 @@ $(document).ready(function(){
 	//((초성 * 21) + 중성) * 28 + 종성 + 0xAC00
 	
 	
-	$(".key").on("mousedown",function(e){
+//	$(".key").on("mousedown",function(e){
+	$("button").on("mousedown",function(e){
 		e.defaultPrevent;
 		//마지막 글자
 		var val = trgt.val().substr(-1);
@@ -45,7 +46,7 @@ $(document).ready(function(){
 			return;
 		}
 		
-		$(this).addClass(on);
+//		$(this).addClass(on);
 		
 		//공백일 때, 추가할 문자가 한글이 아닐 떄
 		if(val=="" || val==" " || (startKeyList.indexOf(char)==middleKeyList.indexOf(char))){
@@ -194,7 +195,7 @@ $(document).ready(function(){
 		if($(this).hasClass("fkey")){
 			return false;
 		}
-		$(this).removeClass(on);
+//		$(this).removeClass(on);
 		var s = $(this).text();
 		return false;
 	});
@@ -212,13 +213,14 @@ function fnModHanGul(rslt){
 
 function fnkey(key){
 	switch (key) {
-	case "shift":
-		if($("#shift").hasClass("on")){
-			$("#shift").removeClass("on");
+	case "shift1":
+	case "shift2":
+		if($("[id*=shift]").hasClass("on")){
+			$("[id*=shift]").removeClass("on");
 			$(".case2").hide();
 			$(".case1").show();
 		}else{
-			$("#shift").addClass("on");
+			$("[id*=shift]").addClass("on");
 			$(".case1").hide();
 			$(".case2").show();
 		}

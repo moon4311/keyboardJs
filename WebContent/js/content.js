@@ -1,12 +1,12 @@
 
 var body = document.getElementsByTagName("body")[0];
 /* keyboard key */
-var row1 = [1,2,3,4,5,6,7,8,9,0];
+var row1 = [1,2,3,4,5,6,7,8,9,0,"닫기"];
 var row2 = ["ㅂ","ㅈ","ㄷ","ㄱ","ㅅ","ㅛ","ㅕ","ㅑ","ㅐ","ㅔ","backspace"];
 var row3 = ["ㅃ","ㅉ","ㄸ","ㄲ","ㅆ","ㅛ","ㅕ","ㅑ","ㅒ","ㅖ","backspace"];
 var row4 = ["ㅁ","ㄴ","ㅇ","ㄹ","ㅎ","ㅗ","ㅓ","ㅏ","ㅣ","enter"];
 var row5 = ["ㅋ","ㅌ","ㅊ","ㅍ","ㅠ","ㅜ","ㅡ",",",".","/"];
-var row6 = [" ","close"];
+var row6 = ["shift","space","shift"];
 
 var startKeyList = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
 var middleKeyList = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
@@ -17,32 +17,34 @@ var trgt;
 var closeKeyboard = sessionStorage['closeKeyboard'];
 
 function fnMakeRow(arr,rowClss){
-	tag='<div class="row '+ rowClss +'">';
+//	tag='<div class="row '+ rowClss +'">';
+//	tag='<button type="button" class="'+rowClss+'">';
+	var tag = "";
 	arr.forEach(function(a,b){
-		var keyclss="";
-		if(a.length>1){
-			keyclss = 'fkey';
-		}
+		var keyB = "<button class='"+rowClss;
 		if(typeof(a)=="number"){
-			keyclss= 'num';
+			keyB += ' num';
 		}
-		tag += '<div id="'+a+'" class="key '+ keyclss +'">'+a+'</div>';
+		if(a.length>1){
+			keyB += " fkey "+a+"' id='"+a;
+		}
+		if(a=='backspace') a="";
+		keyB +="'>"+a+"</button>";
+		tag += keyB;
 	});
-	tag+='</div>';
 	return tag;
 }
 
-var keyboard='<div class="wrap" style="display:none;">'
-	+ fnMakeRow(row1)
-	+ fnMakeRow(row2,"case1")
-	+ fnMakeRow(row3,"case2")
-	+ fnMakeRow(row4)
-	+ fnMakeRow(row5)
-	+ fnMakeRow(row6)
-	+ '</div>';
+//var keyboard='<div class="keyboard_wrap" style="display:none;">'
+var keyboard= fnMakeRow(row1,'row1')
+	+ fnMakeRow(row2,"row2")
+//	+ fnMakeRow(row3,'row2')
+	+ fnMakeRow(row4,'row3')
+	+ fnMakeRow(row5,'row4');
+//	+ '</div>';
 
 var el = document.createElement("div");
-el.className="keyboard_jm";
+el.className="keyboard_wrap";
 el.innerHTML=keyboard;
 body.append(el);
 

@@ -4,88 +4,64 @@
 <meta charset="UTF-8">
 <script src="js/jquery-3.5.1.slim.js"></script>
 <script src="js/keyboard.js"></script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<div class="keyboard_jm">
+	
 	<div class="test">
 		<input type="text" id="test">
 		<div class="key fkey" id="open">OPEN</div>
 		<div class="key fkey" id="close">X</div>
 	</div>
 	
-	<div class="wrap">
-		<div class="row">
-			<div class="key num">1</div>
-			<div class="key num">2</div>
-			<div class="key num">3</div>
-			<div class="key num">4</div>
-			<div class="key num">5</div>
-			<div class="key num">6</div>
-			<div class="key num">7</div>
-			<div class="key num">8</div>
-			<div class="key num">9</div>
-			<div class="key num">0</div>
-		</div>
-		<div class="row case1">
-			<div class="key">ㅂ</div>
-			<div class="key">ㅈ</div>
-			<div class="key">ㄷ</div>
-			<div class="key">ㄱ</div>
-			<div class="key">ㅅ</div>
-			<div class="key">ㅛ</div>
-			<div class="key">ㅕ</div>
-			<div class="key">ㅑ</div>
-			<div class="key">ㅐ</div>
-			<div class="key">ㅔ</div>
-			<div class="key fkey" id="backspace">Backspace</div>
-		</div>
-		<div class="row case2">
-			<div class="key">ㅃ</div>
-			<div class="key">ㅉ</div>
-			<div class="key">ㄸ</div>
-			<div class="key">ㄲ</div>
-			<div class="key">ㅆ</div>
-			<div class="key">ㅛ</div>
-			<div class="key">ㅕ</div>
-			<div class="key">ㅑ</div>
-			<div class="key">ㅒ</div>
-			<div class="key">ㅖ</div>
-			<div class="key fkey" id="backspace">Backspace</div>
-		</div>
-		<div class="row">
-			<div class="key">ㅁ</div>
-			<div class="key">ㄴ</div>
-			<div class="key">ㅇ</div>
-			<div class="key">ㄹ</div>
-			<div class="key">ㅎ</div>
-			<div class="key">ㅗ</div>
-			<div class="key">ㅓ</div>
-			<div class="key">ㅏ</div>
-			<div class="key">ㅣ</div>
-			<div class="key fkey" id="enter">Enter</div>
-		</div>
-		<div class="row">
-			<div class="key fkey" id="shift">Shift</div>
-			<div class="key">ㅋ</div>
-			<div class="key">ㅌ</div>
-			<div class="key">ㅊ</div>
-			<div class="key">ㅍ</div>
-			<div class="key">ㅠ</div>
-			<div class="key">ㅜ</div>
-			<div class="key">ㅡ</div>
-			<div class="key">,</div>
-			<div class="key">.</div>
-			<div class="key">/</div>
-		</div>
-		<div class="row">
-			<div class="key fkey" id="space">&nbsp;&nbsp;&nbsp; </div>
-			<div class="key fkey" id="close">X</div>
-		</div>
-	</div>
+<div class="keyboard_wrap">
+    <button type="button" class="row1 num">1</button>
+    <button type="button" class="row1 num">2</button>
+    <button type="button" class="row1 num">3</button>
+    <button type="button" class="row1 num">4</button>
+    <button type="button" class="row1 num">5</button>
+    <button type="button" class="row1 num">6</button>
+    <button type="button" class="row1 num">7</button>
+    <button type="button" class="row1 num">8</button>
+    <button type="button" class="row1 num">9</button>
+    <button type="button" class="row1 num">0</button>
+    <button type="button" class="fkey close row1">닫기</button>
+    <button type="button" class="row2">ㅂ</button>
+    <button type="button" class="row2">ㅈ</button>
+    <button type="button" class="row2">ㄷ</button>
+    <button type="button" class="row2">ㄱ</button>
+    <button type="button" class="row2">ㅅ</button>
+    <button type="button" class="row2">ㅛ</button>
+    <button type="button" class="row2">ㅕ</button>
+    <button type="button" class="row2">ㅑ</button>
+    <button type="button" class="row2">ㅐ</button>
+    <button type="button" class="row2">ㅔ</button>
+    <button type="button" class="fkey backspace row2" id="backspace"></button>
+    <button type="button" class="row3">ㅁ</button>
+    <button type="button" class="row3">ㄴ</button>
+    <button type="button" class="row3">ㅇ</button>
+    <button type="button" class="row3">ㄹ</button>
+    <button type="button" class="row3">ㅎ</button>
+    <button type="button" class="row3">ㅗ</button>
+    <button type="button" class="row3">ㅓ</button>
+    <button type="button" class="row3">ㅏ</button>
+    <button type="button" class="row3">ㅣ</button>
+    <button type="button" class="row3">’</button>
+    <button type="button" class="fkey enter" id="enter">Enter <br> <span>(확인)</span></button>
+    <button type="button" class="row4">ㅋ</button>
+    <button type="button" class="row4">ㅌ</button>
+    <button type="button" class="row4">ㅊ</button>
+    <button type="button" class="row4">ㅍ</button>
+    <button type="button" class="row4">ㅠ</button>
+    <button type="button" class="row4">ㅜ</button>
+    <button type="button" class="row4">ㅡ</button>
+    <button type="button" class="row4">,</button>
+    <button type="button" class="row4">.</button>
+    <button type="button" class="row4">/</button>
+    <button type="button" class="fkey row5 shift1" id="shift1">shift</button>
+    <button type="button" class="row5 space"></button>
+    <button type="button" class="fkey row5 shift2" id="shift2">shift</button>
 </div>
-
 
 <div class="todo">TODO LIST</div>
 <ul>

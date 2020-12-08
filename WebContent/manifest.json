@@ -5,19 +5,15 @@
   "author": "KimJaeMoon",
   "default_locale": "ko",
   "description": "Virtual Keyboard",
-  "icons": {"16": "img/16.png",
-		  	"128":"img/128.png"
+  "icons": {"16": "images/16.png",
+		  	"128":"images/128.png"
 		  },
 
   "devtools_page": "setting.html",
   
-  "background" : {
-    "scripts" : ["js/background.js"],
-    "persistent" : false
-  },
   "content_scripts": [
   	{"matches" : ["<all_urls>"],
-  	"css":["css/main.css"],
+  	"css":["css/style.css"],
   	"js":["js/jquery-3.5.1.slim.js","js/content.js"]
   	}
   ],
